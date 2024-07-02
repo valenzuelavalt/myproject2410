@@ -17,9 +17,14 @@ view: order_items {
     # hidden: yes
     sql: ${TABLE}.order_id ;;
   }
+
   dimension: phone {
     type: string
     sql: ${TABLE}.phone ;;
+  }
+  dimension: period {
+    type: string
+    sql: ${TABLE}.id ;;
   }
   dimension: phones {
     type: string
@@ -33,9 +38,23 @@ view: order_items {
   dimension: sale_price {
     type: number
     sql: ${TABLE}.sale_price ;;
+    html:
+  {% if period._in_query  %}
+  <p style='color: red;'>{{ value }}</p>
+  {% elsif value > 0 %}
+  <p style='color: blue; '>{{ value }}</p>
+  {% endif %};;
+
+
   }
   measure: count {
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
+
+  }
+  parameter: show_comparison {
+    type: unquoted
+    allowed_value: {label:"yes"
+      value:"yes"}
   }
 }
