@@ -28,6 +28,7 @@ view: flights {
     sql: ${TABLE}.dep_time ;;
   }
   dimension: destination {
+    map_layer_name: countries
     type: string
     sql: ${TABLE}.destination ;;
   }
