@@ -1,4 +1,5 @@
 connection: "thelook"
+include: "/*.dashboard"
 
 # include all the views
 include: "/views/**/*.view.lkml"
